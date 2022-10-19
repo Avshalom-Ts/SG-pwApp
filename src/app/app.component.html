@@ -1,26 +1,53 @@
-<h1>Password Generator</h1>
-<div>
-  <label>Enter Length</label>
-  <input (input)='onChangeLength($event)' type="text">
-</div>
+<div class="container">
+  <div class="columns is-centered">
+    <div class="box column is-one-third">
+      <h1 class="title has-text-centered">Password Generator</h1>
+      <div class="field">
+        <label>Enter Length</label>
+        <input class="input" (input)='onChangeLength($event)' (change)="onCheckValue($event)" type="text">
+      </div>
 
-<div>
-  <label>User Letters</label>
-  <input (change)="onChangeUseLetter()" type="checkbox">
-</div>
-<div>
-  <label>User Numbers</label>
-  <input (change)="onChangeUseNumbers()" type="checkbox">
-</div>
-<div>
-  <label>User Symbols</label>
-  <input (change)="onChangeUseSymbols()" type="checkbox">
-</div>
-<div>
-  <button (click)="onButtonClick()">Generate!</button>
-</div>
+      <div class="field">
+        <div class="control">
+          <label class="checkbox">
+            <input (change)="onChangeUseLetter()" type="checkbox">
+            User Letters
+          </label>
+        </div>
+      </div>
 
-<div>
-  <label for="">Your Password</label>
-  <input [value]='password'>
+
+      <div class="field">
+        <div class="control">
+          <label class="checkbox">
+            <input (change)="onChangeUseNumbers()" type="checkbox">
+            User Numbers
+          </label>
+        </div>
+      </div>
+
+
+      <div class="field">
+        <div class="control">
+          <label class="checkbox">
+            <input (change)="onChangeUseSymbols()" type="checkbox">
+            User Symbols
+          </label>
+        </div>
+      </div>
+      <div class="box" *ngIf="password">
+        <label>Your Password</label>
+        <input class="input" [value]='password'>
+        <strong>10s to copy the password!!!</strong>
+      </div>
+      <div class="row is-one-third">
+        <button class="button is-link" *ngIf="password">copy</button>
+
+
+        <button [disabled]="!(length && (useLetters || useNumbers||useSymbols))" (click)="onButtonClick()"
+          class="button is-link">{{button}}</button>
+      </div>
+
+    </div>
+  </div>
 </div>

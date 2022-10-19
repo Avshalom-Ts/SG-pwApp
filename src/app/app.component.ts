@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
+  button = 'Generate!';
   length = 0;
   useSymbols = false;
   useNumbers = false;
@@ -19,6 +20,12 @@ export class AppComponent {
       this.length = parseValue;
     }
     console.log(this.length);
+  }
+  onCheckValue(value: any) {
+    const isEmpty = parseInt(value.target.value);
+    if (!isEmpty) {
+      this.length = 0;
+    }
   }
 
   onChangeUseSymbols() {
@@ -34,11 +41,31 @@ export class AppComponent {
   }
 
   onButtonClick() {
-    this.password = 'My Password';
-    console.log(`
-    useSymbols : ${this.useSymbols}
-    useNumbers : ${this.useNumbers}
-    useLetters : ${this.useLetters}
-    `);
+    const numbers = '1234567890';
+    const letters = 'abcdefghijklmnopqrstuvwx';
+    const symbols = '!@#$%^&*()_+-$~?":;{}[]|';
+    let validChars = '';
+
+    if (this.useLetters) {
+      validChars += letters;
+    }
+    if (this.useNumbers) {
+      validChars += numbers;
+    }
+    if (this.useSymbols) {
+      validChars += symbols;
+    }
+    let generatePassWord = '';
+    for (let i = 0; i < this.length; i++) {
+      const index = Math.floor(Math.random() * validChars.length);
+      generatePassWord += validChars[index];
+    }
+    this.password = generatePassWord;
+    this.button = 'OR Re Generate!';
+
+    setTimeout((value: string) => {
+      value = '';
+      this.password = value;
+    }, 10000);
   }
 }
