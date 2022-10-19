@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  length = 0;
+  box = 0;
   useSymbols = false;
   useNumbers = false;
   useLetters = false;
@@ -14,10 +14,9 @@ export class AppComponent {
 
   onChangeLength(value: string) {
     console.log(value);
-    const parseValue = parseInt(value);
-    if (!isNaN(parseValue)) {
-      this.length = parseValue;
-    }
+    // const parseValue = parseInt(value);
+    // if (!isNaN(parseValue)) {
+    //   this.length = parseValue;
   }
 
   onChangeUseSymbols() {
