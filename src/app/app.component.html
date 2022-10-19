@@ -1,8 +1,7 @@
 <h1>Password Generator</h1>
 <div>
   <label>Enter Length</label>
-  <input #box (keyup)='(0)' type="text">
-  <p>{{box.value}}</p>
+  <input (input)='onChangeLength($event)' type="text">
 </div>
 
 <div>

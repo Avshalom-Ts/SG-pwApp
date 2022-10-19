@@ -6,17 +6,19 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  box = 0;
+  length = 0;
   useSymbols = false;
   useNumbers = false;
   useLetters = false;
   password = '';
 
-  onChangeLength(value: string) {
-    console.log(value);
-    // const parseValue = parseInt(value);
-    // if (!isNaN(parseValue)) {
-    //   this.length = parseValue;
+  onChangeLength(value: any) {
+    // console.log(value.target.value);
+    const parseValue = parseInt(value.target.value);
+    if (!isNaN(parseValue)) {
+      this.length = parseValue;
+    }
+    console.log(this.length);
   }
 
   onChangeUseSymbols() {
